@@ -18,7 +18,13 @@ public abstract class AbstractCharge {
      * 模板方法,使用final不让子类去覆盖
      */
     final void charge() {
-        String chargingLine = chooseChargingLine();
+        String chargingLine;
+        // 如果子类中将执行默认的chooseChargingLine()标记稍微false,则执行子类重写后的方法
+        if (!hookChooseChargingLine()) {
+            chargingLine = chooseChargingLine();
+        } else {
+            chargingLine = defaultChargingLine();
+        }
         String phone = choosePhone();
         soak(chargingLine, phone);
     }
@@ -44,4 +50,22 @@ public abstract class AbstractCharge {
         log.info("使用{}给{}充电", chargingLine, phone);
     }
 
+    /**
+     * chooseChargingLine()方法的钩子方法,默认返回TRUE
+     *
+     * @return 是否执行执行默认的chooseChargingLine()方法
+     */
+    boolean hookChooseChargingLine() {
+        return Boolean.TRUE;
+    }
+
+    /**
+     * 默认的充电方式
+     *
+     * @return 默认的充电线
+     */
+    public String defaultChargingLine() {
+        log.info("使用默认的充电线-无线充电");
+        return "无线充电";
+    }
 }

@@ -21,4 +21,9 @@ public class AndroidCharge extends AbstractCharge {
         log.info("选择的手机是华为Mate 40");
         return "华为Mate 40";
     }
+
+    @Override
+    boolean hookChooseChargingLine() {
+        return Boolean.FALSE;
+    }
 }

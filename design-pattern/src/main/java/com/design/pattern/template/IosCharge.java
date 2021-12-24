@@ -21,4 +21,9 @@ public class IosCharge extends AbstractCharge {
         log.info("选择了iphone 13");
         return "iphone 13";
     }
+
+    @Override
+    boolean hookChooseChargingLine() {
+        return Boolean.TRUE;
+    }
 }
