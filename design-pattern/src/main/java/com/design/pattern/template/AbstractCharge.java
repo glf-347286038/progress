@@ -5,7 +5,7 @@ import lombok.extern.log4j.Log4j2;
 /**
  * 充电抽象类
  *
- * @Author: gaolingfeng
+ * @Author: golf
  * @Date: 2021/12/23 0:15
  */
 @Log4j2

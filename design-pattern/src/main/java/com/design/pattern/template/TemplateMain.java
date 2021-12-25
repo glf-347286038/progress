@@ -1,7 +1,7 @@
 package com.design.pattern.template;
 
 /**
- * @author glf
+ * @Author golf
  * @Date: 2021/12/23 23:37
  */
 public class TemplateMain {
