@@ -1,2 +1,3 @@
 # Project exclude paths
 /design-pattern/target/
+/.idea/
