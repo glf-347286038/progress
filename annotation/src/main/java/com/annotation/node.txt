@@ -1,0 +1,14 @@
+简介
+@Import注解和Spring XML里面的一样，是用来导入配置类和一些需要前置加载的类
+
+导入配置的三种类型
+@Import支持三种方式
+1.带有@Configuration的配置类（4.2版本之前只可以导入配置类，4.2之后也可以导入普通类）
+2.@ImportSelector的实现
+3.ImportBeanDefinitionRegistrar
+
+
+使用@Import bean在spring种容器的名称是全路径  即com.xx.类名  实现@ImportSelector也是这样
+只有实现ImportBeanDefinitionRegistrar接口的方式可以自定义bean的名称
+如果一个类本身就有@Configuration注解,本身就会被spring扫到并实例，@Import引入带有@Configuration的
+配置文件，是需要先实例化这个配置文件再进行相关操作。
