@@ -1,0 +1,5 @@
+@Conditional     搭配@Condition、@Configuration和@Bean作用在方法上可以根据条件选择将类加载到Spring的容器中
+@ConditionalOnBean          当给定的bean存在Ioc中,则实例化当前的Bean
+@ConditionalOnMissingBean   当给定的bean不存在Ioc中,则实例当前的Bean
+@ConditionalOnClass         当给定的类名在类路径上存在,则实例化当前的Bean
+@ConditionalOnMissingClass  当给定的类名在类路径上不存在,则实例化当前的Bean

@@ -1,5 +1,8 @@
 package com.annotation.conditon;
 
+import com.annotation.conditon.impl.ConditionServiceImpl;
+import com.annotation.conditon.pojo.ConditionalOnBeanTest;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
@@ -23,5 +26,13 @@ public class ConditionConfig {
         Os linux = new Os();
         linux.setName("Linux");
         return linux;
+    }
+
+    @ConditionalOnBean(ConditionServiceImpl.class)
+    @Bean
+    public ConditionalOnBeanTest conditionalOnBean() {
+        ConditionalOnBeanTest conditionalOnBeanTest = new ConditionalOnBeanTest();
+        conditionalOnBeanTest.setName("测试@ConditionalOnBean");
+        return conditionalOnBeanTest;
     }
 }
