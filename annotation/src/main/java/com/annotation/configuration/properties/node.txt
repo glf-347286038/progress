@@ -1,0 +1,4 @@
+@ConfigurationProperties作用是将配置文件中的属性值映射到实体类中
+如果仅仅是使用该注解那么该类是不会被spring容器管理的,有两种方式可以将该Bean交给spring容器管理
+1.在该Bean上加上@Compentent注解
+2.搭配@EnableConfigurationProperties,相当于将使用@ConfigurationPropeties的类进行了一次注入,@EnableConfigurationProperties(RedisProperties.class)
