@@ -26,4 +26,9 @@ class ConditionServiceTest {
         ConditionalOnBeanTest conditionalOnBeanTest = conditionService.getConditionalOnBeanTest();
         assert conditionalOnBeanTest.getName().equals("测试@ConditionalOnBean");
     }
+
+    @Test
+    void getConditionalOnMissingBeanTest() {
+        Assert.assertNotNull(conditionService.getConditionalOnMissingBeanTest());
+    }
 }

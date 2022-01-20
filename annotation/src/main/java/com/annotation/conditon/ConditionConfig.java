@@ -2,7 +2,9 @@ package com.annotation.conditon;
 
 import com.annotation.conditon.impl.ConditionServiceImpl;
 import com.annotation.conditon.pojo.ConditionalOnBeanTest;
+import com.annotation.conditon.pojo.ConditionalOnMissingBeanTest;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
@@ -34,5 +36,13 @@ public class ConditionConfig {
         ConditionalOnBeanTest conditionalOnBeanTest = new ConditionalOnBeanTest();
         conditionalOnBeanTest.setName("测试@ConditionalOnBean");
         return conditionalOnBeanTest;
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public ConditionalOnMissingBeanTest conditionalOnMissingBeanTest() {
+        ConditionalOnMissingBeanTest conditionalOnMissingBeanTest = new ConditionalOnMissingBeanTest();
+        conditionalOnMissingBeanTest.setName("测试@ConditionalOnMissingBean");
+        return new ConditionalOnMissingBeanTest();
     }
 }
