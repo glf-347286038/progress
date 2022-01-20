@@ -10,21 +10,21 @@ public interface ConditionService {
     /**
      * 获得操作系统信息
      *
-     * @return 操作系统
+     * @return {@link Os}
      */
     Os getOs();
 
     /**
      * 获得ConditionalOnBeanTest
      *
-     * @return ConditionalOnBeanTest
+     * @return {@link ConditionalOnBeanTest}
      */
     ConditionalOnBeanTest getConditionalOnBeanTest();
 
     /**
      * 获得ConditionalOnMissingBeanTest对象
      *
-     * @return ConditionalOnMissingBeanTest
+     * @return {@link ConditionalOnMissingBeanTest}
      */
     ConditionalOnMissingBeanTest getConditionalOnMissingBeanTest();
 }

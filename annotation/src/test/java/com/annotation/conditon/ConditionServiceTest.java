@@ -1,6 +1,7 @@
 package com.annotation.conditon;
 
 import com.annotation.conditon.pojo.ConditionalOnBeanTest;
+import com.annotation.conditon.pojo.ConditionalOnMissingBeanTest;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -29,6 +30,7 @@ class ConditionServiceTest {
 
     @Test
     void getConditionalOnMissingBeanTest() {
-        Assert.assertNotNull(conditionService.getConditionalOnMissingBeanTest());
+        ConditionalOnMissingBeanTest conditionalOnMissingBeanTest = conditionService.getConditionalOnMissingBeanTest();
+        Assert.assertNotNull(conditionalOnMissingBeanTest);
     }
 }

@@ -32,17 +32,17 @@ public class ConditionConfig {
 
     @ConditionalOnBean(ConditionServiceImpl.class)
     @Bean
-    public ConditionalOnBeanTest conditionalOnBean() {
+    public ConditionalOnBeanTest conditionalOnBeanTest() {
         ConditionalOnBeanTest conditionalOnBeanTest = new ConditionalOnBeanTest();
         conditionalOnBeanTest.setName("测试@ConditionalOnBean");
         return conditionalOnBeanTest;
     }
 
     @Bean
-    @ConditionalOnMissingBean
+    @ConditionalOnMissingBean(name = "conditionalOnMissingBeanTest")
     public ConditionalOnMissingBeanTest conditionalOnMissingBeanTest() {
         ConditionalOnMissingBeanTest conditionalOnMissingBeanTest = new ConditionalOnMissingBeanTest();
         conditionalOnMissingBeanTest.setName("测试@ConditionalOnMissingBean");
-        return new ConditionalOnMissingBeanTest();
+        return conditionalOnMissingBeanTest;
     }
 }
