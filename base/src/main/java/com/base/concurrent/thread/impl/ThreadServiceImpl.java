@@ -18,6 +18,9 @@ import java.util.concurrent.*;
 @Log4j2
 @Service
 public class ThreadServiceImpl implements ThreadService {
+
+    private static final ThreadLocal<String> THREAD_LOCAL = new ThreadLocal<>();
+
     @Override
     public void createByExtend() {
         Thread thread = new Thread(() -> log.info("createByExtend() lambda匿名内部类中调用"));
@@ -67,6 +70,20 @@ public class ThreadServiceImpl implements ThreadService {
             result.putAll(futureTask.get());
         }
         return result;
+    }
+
+    @Override
+    public String getValueFromThreadLocal() {
+        log.info("getValueFromThreadLocal:THREAD_LOCAL{}", THREAD_LOCAL);
+        String threadValue = THREAD_LOCAL.get();
+        THREAD_LOCAL.remove();
+        return threadValue;
+    }
+
+    @Override
+    public void putValueToThreadLocal(String value) {
+        THREAD_LOCAL.set(value);
+        log.info("putValueToThreadLocal:THREAD_LOCAL{}", THREAD_LOCAL);
     }
 
     private static class MyCallable implements Callable<Map<Integer, String>> {

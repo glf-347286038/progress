@@ -70,4 +70,27 @@ class ThreadServiceTest {
         log.info(result);
         Assert.assertNotNull(result);
     }
+
+    @Test
+    void getValueFromThreadLocal() {
+        String threadLocalValue1 = "线程1";
+        Runnable runnable = () -> {
+            threadService.putValueToThreadLocal(threadLocalValue1);
+            String expected1 = threadService.getValueFromThreadLocal();
+            Assert.assertEquals(threadLocalValue1, expected1);
+        };
+        Thread thread1 = new Thread(runnable);
+        thread1.start();
+
+
+        String threadLocalValue2 = "线程2";
+        Runnable runnable2 = () -> {
+            threadService.putValueToThreadLocal(threadLocalValue2);
+            String expected2 = threadService.getValueFromThreadLocal();
+            Assert.assertEquals(threadLocalValue2, expected2);
+
+        };
+        Thread thread = new Thread(runnable2);
+        thread.start();
+    }
 }

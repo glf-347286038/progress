@@ -16,4 +16,8 @@ public interface ThreadService {
     Integer callableType() throws ExecutionException, InterruptedException;
 
     Map<Integer, String> multitaskingConcurrent(List<List<Integer>> paramList);
+
+    String getValueFromThreadLocal();
+
+    void putValueToThreadLocal(String value);
 }
