@@ -1,5 +1,6 @@
 package com.base.algorithm.sort.service;
 
+import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Arrays;
 import java.util.List;
 
+@Log4j2
 @RunWith(SpringRunner.class)
 @SpringBootTest
 class SortServiceTest {
@@ -23,5 +25,14 @@ class SortServiceTest {
         int maxValue = newList.get(newList.size() - 1);
         Assert.assertEquals(1, minValue);
         Assert.assertEquals(77, maxValue);
+    }
+
+    @Test
+    void quickSort() {
+        Integer[] originalArray = {10, 9, 8, 1, 2, 3, 2};
+        sortService.quickSort(originalArray, 0, originalArray.length - 1);
+        log.info("快速排序之后的数组:{}", Arrays.asList(originalArray));
+        Integer minValue = originalArray[0];
+        Assert.assertEquals(Integer.valueOf(1), minValue);
     }
 }

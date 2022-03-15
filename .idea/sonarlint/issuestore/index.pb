@@ -100,7 +100,3 @@ Nannotation/src/test/java/com/annotation/configuration/properties/UserTest.java
 base/.gitignore,2\2\222afad067dd5c64cc3f08649168e42762b815b1
 =
 base/mvnw.cmd,2\5\259400b3d547b776138c9823f3eee0c9750bb60e
-e
-5base/src/test/java/com/base/BaseApplicationTests.java,7\9\796ddb9f61c2ed70c5fb749ad5cfd145d93825e5
-w
-Gbase/src/test/java/com/base/algorithm/sort/service/SortServiceTest.java,8\a\8a1594a0419b36db28e76c5731b765c293f40aee
