@@ -93,4 +93,15 @@ class ThreadServiceTest {
         Thread thread = new Thread(runnable2);
         thread.start();
     }
+
+    @Test
+    void countDownLatchService() {
+        List<Integer> param = new ArrayList<>();
+        for (int i = 1; i <= 10; i++) {
+            param.add(i);
+        }
+        Map<String, Integer> response = threadService.countDownLatchService(param);
+        log.info("结果:{}", response);
+        Assert.assertEquals("数量不正确", 3, response.size());
+    }
 }

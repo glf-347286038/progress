@@ -20,4 +20,6 @@ public interface ThreadService {
     String getValueFromThreadLocal();
 
     void putValueToThreadLocal(String value);
+
+    Map<String, Integer> countDownLatchService(List<Integer> param);
 }

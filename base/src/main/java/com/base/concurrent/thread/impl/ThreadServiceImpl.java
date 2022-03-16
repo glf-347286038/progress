@@ -5,10 +5,7 @@ import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.*;
 
 /**
@@ -84,6 +81,43 @@ public class ThreadServiceImpl implements ThreadService {
     public void putValueToThreadLocal(String value) {
         THREAD_LOCAL.set(value);
         log.info("putValueToThreadLocal:THREAD_LOCAL{}", THREAD_LOCAL);
+    }
+
+    //    @SneakyThrows
+    @SneakyThrows
+    @Override
+    public Map<String, Integer> countDownLatchService(List<Integer> param) {
+        Map<String, Integer> response = new LinkedHashMap<>(4);
+        CountDownLatch countDownLatch = new CountDownLatch(2);
+        Runnable runnable1 = () -> {
+            // 线程一做加法运算
+            Integer addResult = 0;
+            for (Integer object : param) {
+                addResult += object;
+            }
+            response.put(Thread.currentThread().getName() + countDownLatch.getCount(), addResult);
+            countDownLatch.countDown();
+        };
+        Thread thread1 = new Thread(runnable1);
+        thread1.setName("线程一");
+        thread1.start();
+
+        Runnable runnable2 = () -> {
+            // 线程2做乘法
+            Integer multiplyResult = 1;
+            for (Integer object : param) {
+                multiplyResult *= object;
+            }
+            response.put(Thread.currentThread().getName() + countDownLatch.getCount(), multiplyResult);
+            countDownLatch.countDown();
+        };
+        Thread thread2 = new Thread(runnable2);
+        thread2.setName("线程二");
+        thread2.start();
+        // 主线程等待子线程执行完才可以开始执行一些操作
+        countDownLatch.await();
+        response.put(Thread.currentThread().getName() + countDownLatch, 0);
+        return response;
     }
 
     private static class MyCallable implements Callable<Map<Integer, String>> {
