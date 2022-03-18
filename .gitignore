@@ -1,3 +1,4 @@
 # Project exclude paths
 /design-pattern/target/
 /.idea/
+!/.idea/sonarlint/issuestore/index.pb
