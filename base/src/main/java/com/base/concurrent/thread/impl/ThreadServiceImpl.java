@@ -14,7 +14,7 @@ import java.util.concurrent.*;
  */
 @Log4j2
 @Service
-@SuppressWarnings("All")
+@SuppressWarnings("all")
 public class ThreadServiceImpl implements ThreadService {
 
     private static final ThreadLocal<String> THREAD_LOCAL = new ThreadLocal<>();
@@ -26,7 +26,6 @@ public class ThreadServiceImpl implements ThreadService {
         thread.start();
     }
 
-    @SuppressWarnings("all")
     @Override
     public void runnableType() {
         Runnable runnable = new Runnable() {

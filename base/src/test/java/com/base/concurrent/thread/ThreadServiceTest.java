@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.FutureTask;
 
 /**
  * @Author: golf
@@ -108,6 +109,24 @@ class ThreadServiceTest {
     @Test
     void threadPoolType() {
         threadService.threadPoolType();
+        Assert.assertTrue(Boolean.TRUE);
+    }
+
+    @Test
+    void test01() {
+        Thread thread = new Thread(() -> log.info("使用内部类创建线程"));
+        thread.start();
+
+        Runnable runnable = () -> log.info("使用Runnable创建线程");
+        Thread thread2 = new Thread(runnable);
+        thread2.start();
+
+        FutureTask<Integer> futureTask = new FutureTask<>(() -> {
+            log.info("使用futureTask创建线程");
+            return 100;
+        });
+        new Thread(futureTask).start();
+
         Assert.assertTrue(Boolean.TRUE);
     }
 }
