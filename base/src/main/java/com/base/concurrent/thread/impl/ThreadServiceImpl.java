@@ -50,6 +50,16 @@ public class ThreadServiceImpl implements ThreadService {
         return futureTask.get();
     }
 
+    @Override
+    public void threadPoolType() {
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        for (int i = 0; i < 100; i++) {
+            Runnable runnable = () -> log.info("当前线程名称:{}", Thread.currentThread().getName());
+            executorService.submit(runnable);
+        }
+        executorService.shutdown();
+    }
+
     @SneakyThrows
     @Override
     public Map<Integer, String> multitaskingConcurrent(List<List<Integer>> paramList) {

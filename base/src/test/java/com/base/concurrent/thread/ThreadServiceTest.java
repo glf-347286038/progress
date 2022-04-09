@@ -104,4 +104,10 @@ class ThreadServiceTest {
         log.info("结果:{}", response);
         Assert.assertEquals("数量不正确", 3, response.size());
     }
+
+    @Test
+    void threadPoolType() {
+        threadService.threadPoolType();
+        Assert.assertTrue(Boolean.TRUE);
+    }
 }

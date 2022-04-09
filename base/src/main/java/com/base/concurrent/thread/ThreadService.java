@@ -29,6 +29,11 @@ public interface ThreadService {
     Integer callableType() throws ExecutionException, InterruptedException;
 
     /**
+     * 使用线程池创建线程
+     */
+    void threadPoolType();
+
+    /**
      * 使用FutureTask+线程池批量处理任务
      *
      * @param paramList 参数
