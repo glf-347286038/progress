@@ -19,8 +19,7 @@ public class LockServiceImpl implements LockService {
     private int ticketCount = 3;
 
     @Override
-    public boolean testReentrantLock() {
-        log.info("当前线程名称：{}", Thread.currentThread()::getName);
+    public Boolean testReentrantLock() {
         // 加锁
         reentrantLock.lock();
         try {
@@ -29,7 +28,8 @@ public class LockServiceImpl implements LockService {
                 return Boolean.FALSE;
             }
             ticketCount--;
-            log.info("抢票成功,当前剩余票数:{}", ticketCount);
+            String currentThreadName = Thread.currentThread().getName();
+            log.info("线程{}抢票成功,当前剩余票数:{}", currentThreadName, ticketCount);
         } catch (Exception e) {
             log.error("LockServiceImpl.testReentrantLock()出错", e);
         } finally {

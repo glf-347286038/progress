@@ -1,5 +1,10 @@
 package com.base.concurrent.lock;
 
 public interface LockService {
-    boolean testReentrantLock();
+    /**
+     * 测试ReentrantLock
+     *
+     * @return 抢票成功
+     */
+    Boolean testReentrantLock();
 }

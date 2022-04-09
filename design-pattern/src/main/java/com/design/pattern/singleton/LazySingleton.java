@@ -1,6 +1,5 @@
 package com.design.pattern.singleton;
 
-import com.sun.istack.internal.NotNull;
 import lombok.Data;
 
 /**
@@ -29,7 +28,7 @@ public class LazySingleton {
      *
      * @return LazySingleton
      */
-    public static LazySingleton getInstance(@NotNull Object data) {
+    public static LazySingleton getInstance(Object data) {
         if (lazySingleton == null) {
             lazySingleton = new LazySingleton();
             lazySingleton.setData(data);
