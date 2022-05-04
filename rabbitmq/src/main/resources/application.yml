@@ -1,10 +1,24 @@
 server:
   port: 10086
 spring:
-  # ����rabbitmq����
   rabbitmq:
     username: test
     password: 123456
     virtual-host: /test
     host: 118.190.211.69
     port: 5672
+    listener:
+      simple:
+        # auth 类似事务机制，消费成功返回ack，消费异常返回nack
+        acknowledge-mode: auto
+        retry:
+          # 开启消费者失败重试
+          enabled: true
+          # 初始的失败等待时长为1s
+          initial-interval: 1000ms
+          # 失败的等待时长倍数,下次等待时长=multiplier * last-interval
+          multiplier: 1
+          # 最大重试次数
+          max-attempts: 3
+          # true无状态；false有状态。如果业务中包含事务，这里改为false
+          stateless: true
