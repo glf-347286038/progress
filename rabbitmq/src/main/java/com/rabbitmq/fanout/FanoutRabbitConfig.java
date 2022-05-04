@@ -1,4 +1,4 @@
-package com.rabbitmq.config;
+package com.rabbitmq.fanout;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * @Date: 2022/5/2 23:21
  */
 @Configuration
-public class DirectRabbitConfig {
+public class FanoutRabbitConfig {
     /**
      * 声明email队列
      *
@@ -24,7 +24,7 @@ public class DirectRabbitConfig {
         // exclusive：默认false
         // autoDelete:是否自动删除，当没有生产者或者消费者使用此队列，该队列会自动删除
         // 一般设置队列的持久化就好,其余两个就是false
-        return new Queue("email.queue", true);
+        return new Queue("fanout.email.queue", true);
     }
 
     /**
@@ -34,7 +34,7 @@ public class DirectRabbitConfig {
      */
     @Bean
     public Queue smsQueue() {
-        return new Queue("sms.queue", true);
+        return new Queue("fanout.sms.queue", true);
     }
 
     /**
@@ -44,7 +44,7 @@ public class DirectRabbitConfig {
      */
     @Bean
     public Queue weiChatQueue() {
-        return new Queue("weiChat.queue", true);
+        return new Queue("fanout.weiChat.queue", true);
     }
 
     /**
@@ -54,7 +54,7 @@ public class DirectRabbitConfig {
      */
     @Bean
     public FanoutExchange fanoutOrderExchange() {
-        return new FanoutExchange("fanout_order_exchange", true, false);
+        return new FanoutExchange("fanout_test_exchange", true, false);
     }
 
     /**

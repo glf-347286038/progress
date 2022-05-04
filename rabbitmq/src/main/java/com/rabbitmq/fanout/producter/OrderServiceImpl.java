@@ -15,7 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 public class OrderServiceImpl implements OrderService {
 
-    private static final String EXCHANGE_NAME = "fanout_order_exchange";
+    private static final String EXCHANGE_NAME = "fanout_test_exchange";
     private static final String ROUTING_KEY = "";
     private final RabbitTemplate rabbitTemplate;
     private final AtomicInteger numStore = new AtomicInteger(20);
