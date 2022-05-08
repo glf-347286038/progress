@@ -10,5 +10,5 @@ public interface Interface01 {
      *
      * @return ""
      */
-    String show();
+    String show(int a, String b);
 }
