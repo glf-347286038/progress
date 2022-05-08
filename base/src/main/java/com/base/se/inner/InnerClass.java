@@ -14,17 +14,17 @@ public class InnerClass {
         // 匿名内部类
         Interface01 interface01 = new Interface01() {
             @Override
-            public void show() {
-                log.info("使用了匿名内部类");
+            public String show() {
+                return "使用了匿名内部类";
             }
         };
         interface01.show();
 
         Interface01 interface012 = () -> {
-            log.info("使用lambda测试匿名内部类");
-            log.info("是是嗲及");
+            log.info("study");
+            return "使用lambda测试匿名内部类";
         };
-        interface012.show();
+        log.info(interface012.show());
     }
 
     public void out() {

@@ -7,6 +7,8 @@ package com.base.se.inner;
 public interface Interface01 {
     /**
      * show
+     *
+     * @return ""
      */
-    void show();
+    String show();
 }
