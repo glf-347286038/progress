@@ -17,7 +17,7 @@ public class SmsDirectConsumer {
     @RabbitHandler
     public void smsDirectConsumer(String message) {
         // 消费端出错，broker会一直重试，如果不做限制会出现死循环
+        Assert.isTrue(message.length() > 3, "消息长度小于3,消费者报错");
         log.info("smsDirectConsumer接收到消息:{},开始处理消息", message);
-        Assert.isTrue(message.length() < 3, "消息长度小于3,消费者报错");
     }
 }
