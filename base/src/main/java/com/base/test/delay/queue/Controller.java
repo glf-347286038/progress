@@ -2,6 +2,7 @@ package com.base.test.delay.queue;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,17 +20,17 @@ import java.util.concurrent.TimeUnit;
 @RequestMapping("delay")
 @RestController
 public class Controller implements InitializingBean {
+
     /**
      * 延迟队列
      */
-    private static final DelayQueue<Message> DELAY_QUEUE = new DelayQueue<>();
+    private static final DelayQueue<DelayedMessage> DELAY_QUEUE = new DelayQueue<>();
+    private final ThreadPoolTaskExecutor threadPoolTaskExecutor;
 
-    public static void main(String[] args) {
-        Message message = new Message();
-        message.setBody("sss");
-        message.setExecuteTime(10L);
-
+    public Controller(ThreadPoolTaskExecutor threadPoolTaskExecutor) {
+        this.threadPoolTaskExecutor = threadPoolTaskExecutor;
     }
+
 
     /**
      * 接收消息
@@ -38,38 +39,57 @@ public class Controller implements InitializingBean {
      * @return 结果
      */
     @PostMapping("save/message")
-    String putMessage(@RequestBody String message) {
-        Message message1 = new Message();
+    String putMessage(@RequestBody DelayMessageVO message) {
+        DelayedMessage delayedMessage1 = new DelayedMessage();
         // 设置消息到期时间 30秒后消息到期
-        message1.setExecuteTime(Message.getDateByInterval(new Date(), 5, Calendar.SECOND).getTime());
-        message1.setBody(message);
-        DELAY_QUEUE.put(message1);
+        delayedMessage1.setExecuteTime(DelayedMessage.getDateByInterval(new Date(), 20, Calendar.SECOND).getTime());
+        delayedMessage1.setBody(message.getMessage());
+        DELAY_QUEUE.put(delayedMessage1);
+        log.info("接收到消息:{}", message.getMessage());
         return "消息发送成功";
     }
 
     @Override
     public void afterPropertiesSet() {
-        Thread thread = new Thread(() -> {
-            while (true) {
+
+        Thread thread = threadPoolTaskExecutor.createThread(() -> {
+            while (!Thread.interrupted()) {
                 try {
-                    Message message = DELAY_QUEUE.take();
-                    if (message.getDelay(TimeUnit.SECONDS) <= 0) {
-                        consumingMessage(message);
+                    DelayedMessage delayedMessage = DELAY_QUEUE.take();
+                    if (delayedMessage.getDelay(TimeUnit.SECONDS) <= 0) {
+                        consumingMessage(delayedMessage);
                     }
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    log.error("消费消息的守护线程出现异常", e);
+                    Thread.currentThread().interrupt();
+                    threadPoolTaskExecutor.shutdown();
                 }
             }
         });
         thread.setDaemon(true);
         thread.start();
+//        threadPoolTaskExecutor.createThread(() -> {
+//
+//            while (!Thread.interrupted()) {
+//                try {
+//                    DelayedMessage delayedMessage = DELAY_QUEUE.take();
+//                    if (delayedMessage.getDelay(TimeUnit.SECONDS) <= 0) {
+//                        consumingMessage(delayedMessage);
+//                    }
+//                } catch (InterruptedException e) {
+//                    log.error("消费消息的守护线程出现异常", e);
+//                    Thread.currentThread().interrupt();
+//                    threadPoolTaskExecutor.shutdown();
+//                }
+//            }
+//        });
     }
 
     /**
      * 消费消息
      */
-    private void consumingMessage(Message message) {
+    private void consumingMessage(DelayedMessage delayedMessage) {
         log.info("开始消费消息,消息内容:{},消息过期时间:{},当前时间:{}",
-                message.getBody(), Message.formatOne(message.getExecuteTime()), Message.formatOne(System.currentTimeMillis()));
+                delayedMessage.getBody(), DelayedMessage.formatOne(delayedMessage.getExecuteTime()), DelayedMessage.formatOne(System.currentTimeMillis()));
     }
 }

@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 @Data
-public class Message implements Delayed {
+public class DelayedMessage implements Delayed {
     /**
      * 消息内容
      */
