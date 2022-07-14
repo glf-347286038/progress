@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO" monitorInterval="30" additivity="false">
+    <Properties>
+        <!-- 服务名称 -->
+        <Property name="ServiceName">util</Property>
+        <!-- 日志路径 -->
+        <Property name="LOG_HOME">logs</Property>
+        <!-- 日志名称 -->
+        <Property name="LOG_NAME">util</Property>
+        <!-- 日志格式,traceId配置 -->
+        <property name="LOG_FORMAT">[%-level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%12X{traceId}] [%t] %logger{36} - %msg%n
+        </property>
+        <!-- 备份目录 -->
+        <property name="BACKUP_HOME">${LOG_HOME}/backup</property>
+        <!-- 备份频率 -->
+        <property name="BACK_Hz">%d{yyyy-MM-dd}</property>
+    </Properties>
+    <Appenders>
+        <!-- 日志输出至控制台 -->
+        <console NAME="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout charset="UTF-8">
+                <pattern>%highlight{[%-level] %d{yyyy-MM-dd HH:mm:ss.SSS}} [%12X{traceId}] [%t] %logger{36} -
+                    %highlight{%msg}%n
+                </pattern>
+            </PatternLayout>
+            <Filters>
+                <ThresholdFilter level="error" onMatch="ACCEPT" onMisMatch="NEUTRAL"/>
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMisMatch="DENY"/>
+            </Filters>
+        </console>
+
+        <!-- 日志等级:INFO 备份频率:每天备份  -->
+        <RollingFile name="InfoLogRecord" fileName="${LOG_HOME}/${LOG_NAME}_info.log"
+                     filePattern="${BACKUP_HOME}/info/${LOG_NAME}_${BACK_Hz}_%i.log.gz">
+            <PatternLayout pattern="${LOG_FORMAT}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="50MB"/>
+            </Policies>
+            <DefaultRolloverStrategy>
+                <Delete basePath="${BACKUP_HOME}/info/" maxDepth="1">
+                    <IfFileName glob="*.log.gz"/>
+                    <IfLastModified age="180d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+            <Filters>
+                <ThresholdFilter level="error" onMatch="ACCEPT" onMisMatch="NEUTRAL"/>
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMisMatch="DENY"/>
+            </Filters>
+        </RollingFile>
+
+        <!-- 日志等级:ERROR 备份频率:每天备份  -->
+        <RollingFile name="ErrorLogRecord" fileName="${LOG_HOME}/${LOG_NAME}_error.log"
+                     filePattern="${BACKUP_HOME}/error/${LOG_NAME}_${BACK_Hz}_%i.log.gz">
+            <PatternLayout pattern="${LOG_FORMAT}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="50MB"/>
+            </Policies>
+            <DefaultRolloverStrategy>
+                <Delete basePath="${BACKUP_HOME}/error/" maxDepth="1">
+                    <IfFileName glob="*.log.gz"/>
+                    <IfLastModified age="180d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+            <Filters>
+                <ThresholdFilter level="error" onMatch="ACCEPT" onMisMatch="DENY"/>
+            </Filters>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="InfoLogRecord"/>
+            <AppenderRef ref="ErrorLogRecord"/>
+        </Root>
+    </Loggers>
+</Configuration>
