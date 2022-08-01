@@ -13,6 +13,7 @@
         <module name="base" />
         <module name="annotation" />
         <module name="rabbitmq" />
+        <module name="flowable" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
@@ -23,6 +24,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="base" options="-parameters" />
       <module name="demo" options="-parameters" />
+      <module name="flowable" options="-parameters" />
       <module name="rabbitmq" options="-parameters" />
       <module name="util" options="-parameters" />
     </option>
