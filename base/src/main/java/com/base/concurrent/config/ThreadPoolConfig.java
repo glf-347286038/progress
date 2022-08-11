@@ -31,7 +31,7 @@ public class ThreadPoolConfig {
     private static final int MAXIMUM_POOL_SIZE = CPU_COUNT << 2;
 
     /**
-     * 线程池最大容纳线程数
+     * 空闲线程存活时间
      */
     private static final int KEEP_ALIVE_TIME = 30;
 
