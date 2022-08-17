@@ -15,16 +15,19 @@
         <module name="annotation" />
         <module name="rabbitmq" />
         <module name="flowable" />
+        <module name="demostarter" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
       <module name="demo" target="1.8" />
+      <module name="demoStarter" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="base" options="-parameters" />
       <module name="demo" options="-parameters" />
+      <module name="demostarter" options="-parameters" />
       <module name="flowable" options="-parameters" />
       <module name="rabbitmq" options="-parameters" />
       <module name="util" options="-parameters" />

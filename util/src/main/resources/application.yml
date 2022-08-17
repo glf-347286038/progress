@@ -6,3 +6,7 @@ spring:
 logging:
   # log4j2日志配置
   config: classpath:log4j2.xml
+
+demo:
+  id: 10
+  name: 高凌峰

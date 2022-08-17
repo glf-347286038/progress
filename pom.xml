@@ -11,6 +11,7 @@
     <modules>
         <module>design-pattern</module>
         <module>annotation</module>
+        <module>demoStarter</module>
     </modules>
 
     <dependencyManagement>
