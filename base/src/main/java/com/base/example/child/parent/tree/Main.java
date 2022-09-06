@@ -1,9 +1,11 @@
 package com.base.example.child.parent.tree;
 
+import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * @author golf
@@ -30,8 +32,22 @@ public class Main {
         institutionList.add(institution5);
         institutionList.add(institution6);
         institutionList.add(institution7);
-        log.info("mock数据库查询出来的原始list:{}", institutionList);
+        log.info("mock数据库查询出来的原始list:{}", JSON.toJSONString(institutionList));
 
-
+        Map<Integer, Institution> groupMap = institutionList.stream().collect(Collectors.toMap(Institution::getId, Function.identity()));
+        Set<Integer> hasParentIdSet = new HashSet<>();
+        for (Map.Entry<Integer, Institution> institutionEntry : groupMap.entrySet()) {
+            Institution mapValue = institutionEntry.getValue();
+            // 查询机构的父机构
+            Institution parentInstitution = groupMap.get(mapValue.getParentId());
+            if (parentInstitution != null) {
+                parentInstitution.addChild(mapValue);
+                hasParentIdSet.add(mapValue.getId());
+            }
+        }
+        for (Integer id : hasParentIdSet) {
+            groupMap.remove(id);
+        }
+        log.info("树结构:{}", JSON.toJSON(groupMap).toString());
     }
 }

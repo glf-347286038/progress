@@ -2,6 +2,7 @@ package com.base.example.child.parent.tree;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,8 @@ import java.util.List;
  * @date 2022/8/23 11:49
  */
 @Data
-public class Institution {
+public class Institution implements Serializable {
+    private static final long serialVersionUID = 1072526945862886642L;
     /**
      * 主键id
      */
@@ -35,7 +37,7 @@ public class Institution {
     private List<Institution> childList;
 
     public void addChild(Institution child) {
-        if (child == null) {
+        if (childList == null) {
             childList = new ArrayList<>();
         }
         this.childList.add(child);
