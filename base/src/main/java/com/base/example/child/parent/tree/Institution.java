@@ -2,6 +2,7 @@ package com.base.example.child.parent.tree;
 
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,4 +33,18 @@ public class Institution {
      * 子级列表
      */
     private List<Institution> childList;
+
+    public void addChild(Institution child) {
+        if (child == null) {
+            childList = new ArrayList<>();
+        }
+        this.childList.add(child);
+    }
+
+    public Institution(Integer id, String name, Integer level, Integer parentId) {
+        this.id = id;
+        this.name = name;
+        this.level = level;
+        this.parentId = parentId;
+    }
 }
