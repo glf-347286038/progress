@@ -92,6 +92,9 @@
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>2.7.2</version>
                     <configuration>
+                        <!-- 热部署配置 -->
+                        <fork>true</fork>
+                        <addResources>true</addResources>
                         <executable>true</executable>
                     </configuration>
                 </plugin>
