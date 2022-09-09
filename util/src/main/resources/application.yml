@@ -3,10 +3,20 @@ server:
 spring:
   application:
     name: util
+  datasource:
+    url: jdbc:mysql://47.98.149.207:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 158d3e483dc2
+    driver-class-name: com.mysql.cj.jdbc.Driver
 logging:
-  # log4j2日志配置
+  # log4j2日志配置  业务
   config: classpath:log4j2.xml
 
 demo:
   id: 10
   name: 高凌峰
+
+# 加载Mybatis映射文件,默认开启了下划线转驼峰设置
+mybatis-plus:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  config-location: classpath:mybatis/mybatis-config.xml
