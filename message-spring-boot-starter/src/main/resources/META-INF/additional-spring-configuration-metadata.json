@@ -1,0 +1,16 @@
+{
+  "properties": [
+    {
+      "name": "message.accessKeyId",
+      "type": "java.lang.String",
+      "description": "访问id、账号.",
+      "defaultValue": "guest"
+    },
+    {
+      "name": "message.accessKeySecret",
+      "type": "java.lang.String",
+      "description": "访问凭证,即密码.",
+      "defaultValue": "guest"
+    }
+  ]
+}

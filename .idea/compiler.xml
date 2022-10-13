@@ -10,6 +10,7 @@
         <module name="demo" />
         <module name="websocket" />
         <module name="design-pattern" />
+        <module name="message-spring-boot-starter" />
         <module name="util" />
         <module name="base" />
         <module name="annotation" />
@@ -29,6 +30,7 @@
       <module name="demo" options="-parameters" />
       <module name="demostarter" options="-parameters" />
       <module name="flowable" options="-parameters" />
+      <module name="message-spring-boot-starter" options="-parameters" />
       <module name="rabbitmq" options="-parameters" />
       <module name="util" options="-parameters" />
       <module name="websocket" options="-parameters" />
