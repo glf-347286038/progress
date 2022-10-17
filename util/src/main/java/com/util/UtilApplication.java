@@ -1,5 +1,6 @@
 package com.util;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  * @author golf
  */
+@MapperScan({"com.util.module.*.mapper","com.util.module.**.mapper","com.util.module.***.mapper"})
 @SpringBootApplication
 public class UtilApplication {
 
