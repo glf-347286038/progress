@@ -8,9 +8,17 @@ spring:
     username: root
     password: 158d3e483dc2
     driver-class-name: com.mysql.cj.jdbc.Driver
-logging:
-  # log4j2日志配置  业务
-  config: classpath:log4j2.xml
+
+  redis:
+    host: 47.98.149.207
+    port: 6379
+    password: redis#1234
+    database: 0
+
+  jackson:
+    # 日期全局返回格式
+    date-format: yyyy-Mm-dd HH:mm:ss
+    time-zone: GMT+8
 
 demo:
   id: 10
@@ -20,3 +28,7 @@ demo:
 mybatis-plus:
   mapper-locations: classpath:mybatis/mapper/*.xml
   config-location: classpath:mybatis/mybatis-config.xml
+
+logging:
+  # log4j2日志配置  业务
+  config: classpath:log4j2.xml

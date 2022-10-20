@@ -6,6 +6,7 @@ import com.util.module.sys.auth.model.SysAuth;
 import com.util.module.sys.auth.service.SysAuthService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.List;
 public class SysAuthServiceImpl implements SysAuthService {
 
     private final SysAuthMapper sysAuthMapper;
-
+    private final RedisTemplate<String, Object> redisTemplate;
     @Override
     public List<SysAuth> listSysAuth(String authPath) {
         QueryWrapper<SysAuth> queryWrapper = new QueryWrapper<>();
