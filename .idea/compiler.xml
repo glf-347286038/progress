@@ -12,7 +12,6 @@
         <module name="util" />
         <module name="flowable" />
         <module name="websocket" />
-        <module name="demostarter" />
         <module name="demo" />
         <module name="message-spring-boot-starter" />
         <module name="rabbitmq" />
@@ -22,6 +21,7 @@
     <bytecodeTargetLevel target="8">
       <module name="demo" target="1.8" />
       <module name="demoStarter" target="1.5" />
+      <module name="demostarter" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -32,7 +32,7 @@
       <module name="flowable" options="-parameters" />
       <module name="message-spring-boot-starter" options="-parameters" />
       <module name="rabbitmq" options="-parameters" />
-      <module name="util" options="-parameters" />
+      <module name="util" options="" />
       <module name="websocket" options="-parameters" />
     </option>
   </component>

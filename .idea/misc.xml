@@ -13,7 +13,6 @@
         <option value="$PROJECT_DIR$/util/pom.xml" />
         <option value="$PROJECT_DIR$/flowable/pom.xml" />
         <option value="$PROJECT_DIR$/websocket/pom.xml" />
-        <option value="$PROJECT_DIR$/demoStarter/pom.xml" />
         <option value="$PROJECT_DIR$/message-spring-boot-starter/pom.xml" />
       </list>
     </option>
