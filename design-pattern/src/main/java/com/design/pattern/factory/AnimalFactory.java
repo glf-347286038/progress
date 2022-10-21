@@ -12,13 +12,15 @@ public class AnimalFactory {
     private static final String DUCK = "Duck";
 
     public Animal getAnimal(@NonNull String type) {
-        if (CAT.equals(type)) {
-            return new Cat();
-        } else if (DOG.equals(type)) {
-            return new Dog();
-        } else if (DUCK.equals(type)) {
-            return new Duck();
+        switch (type) {
+            case CAT:
+                return new Cat();
+            case DOG:
+                return new Dog();
+            case DUCK:
+                return new Duck();
+            default:
+                return null;
         }
-        return null;
     }
 }
