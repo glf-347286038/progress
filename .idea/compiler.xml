@@ -10,6 +10,7 @@
         <module name="annotation" />
         <module name="design-pattern" />
         <module name="util" />
+        <module name="common" />
         <module name="flowable" />
         <module name="websocket" />
         <module name="demo" />
@@ -20,8 +21,8 @@
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
       <module name="demo" target="1.8" />
-      <module name="demoStarter" target="1.5" />
       <module name="demostarter" target="1.8" />
+      <module name="demoStarter" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
