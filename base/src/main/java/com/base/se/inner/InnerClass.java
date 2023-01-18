@@ -12,6 +12,8 @@ public class InnerClass {
 
     public static void main(String[] args) {
         // 匿名内部类
+        // 一般是在对接口或抽象类的实现类使用不是很广泛，很通用，只在当前的场景用一下时，就可以这么去使用匿名内部类，而不需要专门去创建实现类了。
+        // 可以简化代码
         Interface01 interface01 = new Interface01() {
             @Override
             public String show(int x, String a) {
