@@ -1,2 +1,11 @@
 server:
   port: 9000
+spring:
+  redis:
+    password: gotion@1234
+    sentinel:
+      master: redis-master
+      nodes:
+        - 172.25.121.158:26379
+        - 172.25.121.159:26379
+        - 172.25.121.160:26379
