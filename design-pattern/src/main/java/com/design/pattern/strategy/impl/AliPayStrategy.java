@@ -23,4 +23,10 @@ public class AliPayStrategy implements PaymentStrategy, InitializingBean {
     public void pay(double money) {
         log.info("支付宝支付金额:{}", money);
     }
+
+    @Override
+    public void dealPay() {
+        log.info("支付宝dealPay");
+    }
+
 }

@@ -18,9 +18,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class StrategyController {
     private final PaymentStrategyContext paymentStrategyContext;
 
-    @GetMapping("pay/{paymentEnum}")
+    @GetMapping("/pay/{paymentEnum}")
     public String pay(@PathVariable PaymentEnum paymentEnum) {
         paymentStrategyContext.getPaymentStrategy(paymentEnum).pay(100);
+        return "operate success!";
+    }
+
+
+    @GetMapping("/dealPay/{paymentEnum}")
+    public String dealPay(@PathVariable PaymentEnum paymentEnum) {
+        paymentStrategyContext.getPaymentStrategy(paymentEnum).dealPay();
         return "operate success!";
     }
 }

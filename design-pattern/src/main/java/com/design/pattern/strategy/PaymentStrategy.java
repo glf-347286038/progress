@@ -14,4 +14,10 @@ public interface PaymentStrategy {
      * @param money 金额
      */
     void pay(double money);
+
+    /**
+     * 处理
+     */
+    default void dealPay() {
+    }
 }
