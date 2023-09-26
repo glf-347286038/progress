@@ -18,6 +18,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
     private final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
+    @ExceptionHandler(Exception.class)
+    public CommonResult<Object> exceptionHandler(Exception e) {
+        log.error(e.getMessage(), e);
+        return CommonResult.error(500, e.getMessage());
+    }
+
     @ExceptionHandler(ServiceException.class)
     public CommonResult<Object> serviceExceptionHandler(ServiceException e) {
         log.error(e.getMessage(), e);
