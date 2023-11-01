@@ -36,34 +36,33 @@ public class SortServiceImpl implements SortService {
         if (left >= right) {
             return;
         }
-        // 1.基准数
-        Integer base = originalArray[left];
-        int i = left;
-        int j = right;
-        // 此遍历的目的是将数组分为两个数组，一部分数组中的数比base小,另一部分数组比base大
-        while (i < j) {
-            // 2.从右往左直到找到一个比基准数小的数
-            while (originalArray[j] >= base && i < j) {
-                j--;
+        int l = left;
+        int r = right;
+        // 基准数
+        int base = originalArray[l];
+        // 此遍历的目的是将数组分为两个数组，一部分数组中的数比base小
+        while (l < r) {
+            // 从右往左找到比base小的数
+            while (l < r && originalArray[r] >= base) {
+                r--;
             }
-            // 3.从左往右直到找到一个比基准数大的数
-            while (originalArray[i] <= base && i < j) {
-                i++;
+            // 从左往右找到比base大的数
+            while (l < r && originalArray[l] <= base) {
+                l++;
             }
-            // 交换i,j下标处的数据
-            if (i <= j) {
-                Integer temp = originalArray[i];
-                originalArray[i] = originalArray[j];
-                originalArray[j] = temp;
+            // 将比base大的数和比base小的数进行交换
+            if (l < r) {
+                int temp = originalArray[l];
+                originalArray[l] = originalArray[r];
+                originalArray[r] = temp;
             }
         }
-        // 跳出while表示,i和j相遇了,此时i下标的左边的数<=基准数 右边的数>=基准数
+        // 将基准数与l下标处进行交换,这样第一遍排序过后左边的数<=基准数 右边的数>=基准数
+        originalArray[left] = originalArray[l];
+        originalArray[l] = base;
 
-        originalArray[left] = originalArray[i];
-        // 5.将i,j相遇的地方设置为新的基准数
-        originalArray[i] = base;
-        // 5对小于基准数的数组进行递归排序 对大于基准数的数组进行递归排序
-        quickSort(originalArray, left, i - 1);
-        quickSort(originalArray, i + 1, right);
+        // 将基准数左右两边的数组进行递归
+        quickSort(originalArray, left, l - 1);
+        quickSort(originalArray, l + 1, right);
     }
 }

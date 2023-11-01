@@ -16,6 +16,7 @@ public interface SortService {
 
     /**
      * 快速排序
+     * <a href="https://blog.csdn.net/weixin_43586713/article/details/119820797">...</a>
      *
      * @param originalArray 原始数组
      * @param left          左指针

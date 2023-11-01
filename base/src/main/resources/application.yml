@@ -2,10 +2,8 @@ server:
   port: 9000
 spring:
   redis:
-    password: gotion@1234
-    sentinel:
-      master: redis-master
-      nodes:
-        - 172.25.121.158:26379
-        - 172.25.121.159:26379
-        - 172.25.121.160:26379
+    host: 47.98.149.207
+    port: 6379
+    password: redis#1234
+    database: 0
+    timeout: 10000
