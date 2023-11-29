@@ -24,7 +24,7 @@ public class Order {
     private String orderNo;
 
     private Date createTime;
-    private Date createBy;
+    private Long createBy;
     private Date updateTime;
-    private Date updateBy;
+    private Long updateBy;
 }
