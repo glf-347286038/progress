@@ -16,6 +16,7 @@
         <module name="demo" />
         <module name="message-spring-boot-starter" />
         <module name="rabbitmq" />
+        <module name="sharding" />
         <module name="base" />
       </profile>
     </annotationProcessing>
@@ -23,6 +24,7 @@
       <module name="demo" target="1.8" />
       <module name="demostarter" target="1.8" />
       <module name="demoStarter" target="1.5" />
+      <module name="shardingjdbc" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -33,6 +35,8 @@
       <module name="flowable" options="-parameters" />
       <module name="message-spring-boot-starter" options="-parameters" />
       <module name="rabbitmq" options="-parameters" />
+      <module name="sharding" options="" />
+      <module name="shardingjdbc" options="-parameters" />
       <module name="util" options="" />
       <module name="websocket" options="-parameters" />
     </option>
