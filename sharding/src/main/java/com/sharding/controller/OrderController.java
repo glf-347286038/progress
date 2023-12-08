@@ -1,6 +1,7 @@
 package com.sharding.controller;
 
-import com.sharding.entity.Order;
+import com.sharding.domain.entity.Order;
+import com.sharding.domain.vo.OrderVo;
 import com.sharding.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -16,12 +17,17 @@ public class OrderController {
     private final OrderService orderService;
 
     @GetMapping("/{id}")
-    public Order getById(@PathVariable("id") Long id) {
-        return orderService.getById(id);
+    public OrderVo detail(@PathVariable("id") Long id) {
+        return orderService.detail(id);
     }
 
     @PostMapping("/add")
     public void add(@RequestBody Order order) {
         orderService.save(order);
+    }
+
+    @PostMapping("/batchAdd")
+    public void batchAdd(@RequestBody Integer num) {
+        orderService.batchAdd(num);
     }
 }

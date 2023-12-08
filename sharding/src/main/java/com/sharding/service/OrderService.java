@@ -1,7 +1,8 @@
 package com.sharding.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.sharding.entity.Order;
+import com.sharding.domain.entity.Order;
+import com.sharding.domain.vo.OrderVo;
 
 /**
  * @author golf
@@ -9,4 +10,16 @@ import com.sharding.entity.Order;
  */
 public interface OrderService extends IService<Order> {
 
+    /**
+     * 获取订单详情
+     *
+     * @param id 主键
+     * @return 订单VO
+     */
+    OrderVo detail(Long id);
+
+    /**
+     * 批量新增
+     */
+    void batchAdd(Integer num);
 }

@@ -14,8 +14,6 @@ spring:
 
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
-  #实体扫描，多个package用逗号或者分号分隔 com.example.*.entity
-  typeAliasesPackage: com.sharding.entity
   configuration:
     # 开启sql日志
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
