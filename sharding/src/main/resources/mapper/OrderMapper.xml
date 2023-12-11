@@ -2,4 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sharding.mapper.OrderMapper">
 
+    <sql id="conditionOnw">
+        from orders o
+        Left join order_detail od on od.order_id = o.id
+        <where>
+            <if test="pageDTO.orderNo != null and pageDTO.orderNo != ''">
+                o.order_no = #{pageDTO.orderNo}
+            </if>
+            <if test="pageDTO.carType != null and pageDTO.carType != ''">
+                od.key_name = 'A' and od.key_value = #{pageDTO.carType}
+            </if>
+        </where>
+        group by o.id
+    </sql>
+
+    <select id="countPage" resultType="java.lang.Long">
+        select count(1)
+        <include refid="conditionOnw"/>
+    </select>
+
+    <select id="page" resultType="com.sharding.domain.entity.Order">
+        select o.*
+        <include refid="conditionOnw"/>
+        ORDER BY
+            create_time DESC
+        limit #{offset},#{size}
+    </select>
 </mapper>

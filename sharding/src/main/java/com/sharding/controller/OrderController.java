@@ -1,5 +1,8 @@
 package com.sharding.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.sharding.domain.dto.OrderPageDTO;
 import com.sharding.domain.entity.Order;
 import com.sharding.domain.vo.OrderVo;
 import com.sharding.service.OrderService;
@@ -34,5 +37,10 @@ public class OrderController {
     @PostMapping("/batchAddTwo")
     public void batchAddTwo(@RequestBody Integer num) {
         orderService.batchAddTwo(num);
+    }
+
+    @GetMapping("/page")
+    public IPage<Order> page(Page<Order> page, OrderPageDTO pageDTO) {
+        return orderService.page(page, pageDTO);
     }
 }

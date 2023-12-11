@@ -2,7 +2,10 @@ package com.sharding.service.impl;
 
 import cn.hutool.core.lang.Snowflake;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.sharding.domain.dto.OrderPageDTO;
 import com.sharding.domain.entity.Order;
 import com.sharding.domain.entity.OrderDetail;
 import com.sharding.domain.vo.OrderVo;
@@ -142,6 +145,17 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         orderDetailService.saveBatch(orderDetailList);
     }
 
+    @Override
+    public IPage<Order> page(Page<Order> page, OrderPageDTO pageDTO) {
+        IPage<Order> iPage = new Page<>(page.getCurrent(), page.getSize());
+        Long total = baseMapper.countPage(pageDTO);
+        if (total > 0) {
+            iPage.setTotal(total);
+            List<Order> orderList = baseMapper.page(iPage.offset(), iPage.getSize(), pageDTO);
+            iPage.setRecords(orderList);
+        }
+        return iPage;
+    }
 
     @Getter
     public enum OrderKeyNameEnum {
