@@ -30,4 +30,9 @@ public class OrderController {
     public void batchAdd(@RequestBody Integer num) {
         orderService.batchAdd(num);
     }
+
+    @PostMapping("/batchAddTwo")
+    public void batchAddTwo(@RequestBody Integer num) {
+        orderService.batchAddTwo(num);
+    }
 }

@@ -20,6 +20,15 @@ public interface OrderService extends IService<Order> {
 
     /**
      * 批量新增
+     *
+     * @param num 数量
      */
     void batchAdd(Integer num);
+
+    /**
+     * 批量新增
+     *
+     * @param num 数量
+     */
+    void batchAddTwo(Integer num);
 }

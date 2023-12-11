@@ -12,11 +12,13 @@ import com.sharding.service.OrderService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -116,6 +118,28 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         }
         System.out.println(num * 50 + "条数据插入用时" + (System.currentTimeMillis() - start) + " 毫秒");
 
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void batchAddTwo(Integer num) {
+        Snowflake snowflake = new Snowflake(1, 1);
+        List<Order> orderList = new ArrayList<>();
+        List<OrderDetail> orderDetailList = new ArrayList<>();
+        for (int i = 0; i < num; i++) {
+            Long orderId = snowflake.nextId();
+            Order order = new Order().setId(orderId).setOrderNo("no" + orderId);
+            orderList.add(order);
+
+            for (OrderKeyNameEnum enums : OrderKeyNameEnum.values()) {
+                Long orderDetailId = snowflake.nextId();
+                OrderDetail orderDetail = new OrderDetail().setId(orderDetailId).setOrderId(orderId)
+                        .setKeyName(enums.getName()).setKeyValue(UUID.randomUUID().toString());
+                orderDetailList.add(orderDetail);
+            }
+        }
+        this.saveBatch(orderList);
+        orderDetailService.saveBatch(orderDetailList);
     }
 
 
