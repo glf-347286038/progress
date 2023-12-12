@@ -19,11 +19,8 @@
     </sql>
 
     <select id="countPage" resultType="java.lang.Long">
-        select count(1)
-        from (
-            select o.id
+        select count(distinct o.id)
         <include refid="conditionOnw"/>
-        )t
     </select>
 
     <select id="page" resultType="com.sharding.domain.entity.Order">
