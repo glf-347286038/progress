@@ -4,13 +4,15 @@
 
     <sql id="conditionOnw">
         from orders o
-        Left join order_detail od on od.order_id = o.id
+        <if test="pageDTO.carType != null and pageDTO.carType != ''">
+            Left join order_detail odA on odA.order_id = o.id
+        </if>
         <where>
             <if test="pageDTO.orderNo != null and pageDTO.orderNo != ''">
                 o.order_no = #{pageDTO.orderNo}
             </if>
             <if test="pageDTO.carType != null and pageDTO.carType != ''">
-                od.key_name = 'A' and od.key_value = #{pageDTO.carType}
+                odA.key_name = 'A' and odA.key_value = #{pageDTO.carType}
             </if>
         </where>
         group by o.id
@@ -18,7 +20,10 @@
 
     <select id="countPage" resultType="java.lang.Long">
         select count(1)
+        from (
+            select o.id
         <include refid="conditionOnw"/>
+        )t
     </select>
 
     <select id="page" resultType="com.sharding.domain.entity.Order">
