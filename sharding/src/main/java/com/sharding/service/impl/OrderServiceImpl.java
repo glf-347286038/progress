@@ -34,18 +34,16 @@ import java.util.UUID;
 public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements OrderService {
     private final OrderDetailService orderDetailService;
 
-    private String Driver = "com.mysql.cj.jdbc.Driver";
-    private String url = "jdbc:mysql://47.98.149.207:3306/test?serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true";
-    private String user = "root";
-    private String password = "158d3e483dc2";
+    private static final String URL = "jdbc:mysql://47.98.149.207:3306/test?serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true";
     Connection connection = null;
     PreparedStatement psOne;
     PreparedStatement psTwo;
     ResultSet rs = null;
 
+    @SuppressWarnings("all")
     public void coon() throws Exception {
-        Class.forName(Driver);
-        connection = DriverManager.getConnection(url, user, password);
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        connection = DriverManager.getConnection(URL, "root", "158d3e483dc248552");
     }
 
     @Override
@@ -56,6 +54,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         return new OrderVo().setOrder(order).setOrderDetails(orderDetailList);
     }
 
+    @SuppressWarnings("all")
     @Override
     public void batchAdd(Integer num) {
         long start = System.currentTimeMillis();

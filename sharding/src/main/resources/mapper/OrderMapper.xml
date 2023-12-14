@@ -3,28 +3,24 @@
 <mapper namespace="com.sharding.mapper.OrderMapper">
 
     <sql id="conditionOnw">
-        from orders o
-        <if test="pageDTO.carType != null and pageDTO.carType != ''">
-            Left join order_detail odA on odA.order_id = o.id
-        </if>
+        FROM orders o
         <where>
             <if test="pageDTO.orderNo != null and pageDTO.orderNo != ''">
                 o.order_no = #{pageDTO.orderNo}
             </if>
-            <if test="pageDTO.carType != null and pageDTO.carType != ''">
-                odA.key_name = 'A' and odA.key_value = #{pageDTO.carType}
-            </if>
         </where>
-        group by o.id
+        GROUP BY o.id
     </sql>
 
     <select id="countPage" resultType="java.lang.Long">
-        select count(distinct o.id)
+        SELECT COUNT(*) FROM(
+            SELECT o.id
         <include refid="conditionOnw"/>
+        ) temp
     </select>
 
     <select id="page" resultType="com.sharding.domain.entity.Order">
-        select o.*
+        SELECT o.*
         <include refid="conditionOnw"/>
         ORDER BY
             create_time DESC
