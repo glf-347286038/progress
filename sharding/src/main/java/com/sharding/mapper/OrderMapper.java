@@ -3,6 +3,7 @@ package com.sharding.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.sharding.domain.dto.OrderPageDTO;
 import com.sharding.domain.entity.Order;
+import com.sharding.domain.vo.OrderPageVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -30,5 +31,5 @@ public interface OrderMapper extends BaseMapper<Order> {
      * @param pageDTO 查询参数
      * @return 分页
      */
-    List<Order> page(@Param("offset") Long offset, @Param("size") Long size, @Param("pageDTO") OrderPageDTO pageDTO);
+    List<OrderPageVO> page(@Param("offset") Long offset, @Param("size") Long size, @Param("pageDTO") OrderPageDTO pageDTO);
 }

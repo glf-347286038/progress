@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.sharding.domain.dto.OrderPageDTO;
 import com.sharding.domain.entity.Order;
 import com.sharding.domain.entity.OrderDetail;
+import com.sharding.domain.vo.OrderPageVO;
 import com.sharding.domain.vo.OrderVo;
 import com.sharding.mapper.OrderMapper;
 import com.sharding.service.OrderDetailService;
@@ -21,9 +22,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author golf
@@ -145,15 +145,35 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     }
 
     @Override
-    public IPage<Order> page(Page<Order> page, OrderPageDTO pageDTO) {
-        IPage<Order> iPage = new Page<>(page.getCurrent(), page.getSize());
+    public IPage<OrderPageVO> page(Page<Order> page, OrderPageDTO pageDTO) {
+        IPage<OrderPageVO> iPage = new Page<>(page.getCurrent(), page.getSize());
         Long total = baseMapper.countPage(pageDTO);
         if (total > 0) {
             iPage.setTotal(total);
-            List<Order> orderList = baseMapper.page(iPage.offset(), iPage.getSize(), pageDTO);
+            List<OrderPageVO> orderList = baseMapper.page(iPage.offset(), iPage.getSize(), pageDTO);
+            this.setOrderDetailValue(orderList);
             iPage.setRecords(orderList);
         }
         return iPage;
+    }
+
+    /**
+     * 设置订单明细信息
+     *
+     * @param orderList 订单主要信息
+     */
+    private void setOrderDetailValue(List<OrderPageVO> orderList) {
+        List<Long> orderIdList = orderList.stream().map(OrderPageVO::getId).collect(Collectors.toList());
+        Set<String> keyNameList = new HashSet<>();
+        keyNameList.add(OrderKeyNameEnum.A.getName());
+        List<OrderDetail> orderDetailList = orderDetailService.list(
+                new LambdaQueryWrapper<OrderDetail>().in(OrderDetail::getOrderId, orderIdList)
+                        .in(OrderDetail::getKeyName, keyNameList)
+        );
+        Map<Long, List<OrderDetail>> orderDetailMap = orderDetailList.stream().collect(Collectors.groupingBy(OrderDetail::getOrderId));
+        for (OrderPageVO orderPageVO : orderList) {
+            orderPageVO.setOrderDetailList(orderDetailMap.get(orderPageVO.getId()));
+        }
     }
 
     @Getter

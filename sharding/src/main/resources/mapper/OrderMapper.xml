@@ -9,19 +9,22 @@
                 o.order_no = #{pageDTO.orderNo}
             </if>
         </where>
-        GROUP BY o.id
+
     </sql>
 
     <select id="countPage" resultType="java.lang.Long">
-        SELECT COUNT(*) FROM(
-            SELECT o.id
+        SELECT COUNT(o.id)
         <include refid="conditionOnw"/>
-        ) temp
     </select>
 
-    <select id="page" resultType="com.sharding.domain.entity.Order">
-        SELECT o.*
+    <select id="page" resultType="com.sharding.domain.vo.OrderPageVO">
+        SELECT
+            o.id,
+            o.order_no,
+            o.create_time,
+            o.update_time
         <include refid="conditionOnw"/>
+        GROUP BY o.id
         ORDER BY
             create_time DESC
         limit #{offset},#{size}

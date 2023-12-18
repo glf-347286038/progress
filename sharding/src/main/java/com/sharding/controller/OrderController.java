@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sharding.domain.dto.OrderPageDTO;
 import com.sharding.domain.entity.Order;
+import com.sharding.domain.vo.OrderPageVO;
 import com.sharding.domain.vo.OrderVo;
 import com.sharding.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -40,7 +41,7 @@ public class OrderController {
     }
 
     @GetMapping("/page")
-    public IPage<Order> page(Page<Order> page, OrderPageDTO pageDTO) {
+    public IPage<OrderPageVO> page(Page<Order> page, OrderPageDTO pageDTO) {
         return orderService.page(page, pageDTO);
     }
 }

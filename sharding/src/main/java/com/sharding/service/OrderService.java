@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.sharding.domain.dto.OrderPageDTO;
 import com.sharding.domain.entity.Order;
+import com.sharding.domain.vo.OrderPageVO;
 import com.sharding.domain.vo.OrderVo;
 
 /**
@@ -42,5 +43,5 @@ public interface OrderService extends IService<Order> {
      * @param pageDTO 查询参数
      * @return 分页信息
      */
-    IPage<Order> page(Page<Order> page, OrderPageDTO pageDTO);
+    IPage<OrderPageVO> page(Page<Order> page, OrderPageDTO pageDTO);
 }
