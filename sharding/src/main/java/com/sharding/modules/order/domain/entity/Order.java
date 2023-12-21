@@ -1,4 +1,4 @@
-package com.sharding.domain.entity;
+package com.sharding.modules.order.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

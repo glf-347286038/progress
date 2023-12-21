@@ -1,4 +1,4 @@
-package com.sharding.domain.dto;
+package com.sharding.modules.order.domain.dto;
 
 import lombok.Data;
 

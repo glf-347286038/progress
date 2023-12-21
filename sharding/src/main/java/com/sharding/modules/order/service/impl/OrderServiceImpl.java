@@ -1,18 +1,18 @@
-package com.sharding.service.impl;
+package com.sharding.modules.order.service.impl;
 
 import cn.hutool.core.lang.Snowflake;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.sharding.domain.dto.OrderPageDTO;
-import com.sharding.domain.entity.Order;
-import com.sharding.domain.entity.OrderDetail;
-import com.sharding.domain.vo.OrderPageVO;
-import com.sharding.domain.vo.OrderVo;
-import com.sharding.mapper.OrderMapper;
-import com.sharding.service.OrderDetailService;
-import com.sharding.service.OrderService;
+import com.sharding.modules.order.domain.dto.OrderPageDTO;
+import com.sharding.modules.order.domain.entity.Order;
+import com.sharding.modules.order.domain.entity.OrderDetail;
+import com.sharding.modules.order.domain.vo.OrderPageVO;
+import com.sharding.modules.order.domain.vo.OrderVo;
+import com.sharding.modules.order.mapper.OrderMapper;
+import com.sharding.modules.order.service.OrderDetailService;
+import com.sharding.modules.order.service.OrderService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

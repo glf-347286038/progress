@@ -1,7 +1,7 @@
-package com.sharding.domain.vo;
+package com.sharding.modules.order.domain.vo;
 
-import com.sharding.domain.entity.Order;
-import com.sharding.domain.entity.OrderDetail;
+import com.sharding.modules.order.domain.entity.Order;
+import com.sharding.modules.order.domain.entity.OrderDetail;
 import lombok.Data;
 import lombok.experimental.Accessors;
 

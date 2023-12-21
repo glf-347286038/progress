@@ -1,8 +1,8 @@
-package com.sharding.service;
+package com.sharding.modules.order.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.sharding.domain.entity.OrderDetail;
+import com.sharding.modules.order.domain.entity.OrderDetail;
 
 /**
  * @author golf

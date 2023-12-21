@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sharding.mapper.OrderMapper">
+<mapper namespace="com.sharding.modules.order.mapper.OrderMapper">
 
     <sql id="conditionOnw">
         FROM orders o
@@ -17,7 +17,7 @@
         <include refid="conditionOnw"/>
     </select>
 
-    <select id="page" resultType="com.sharding.domain.vo.OrderPageVO">
+    <select id="page" resultType="com.sharding.modules.order.domain.vo.OrderPageVO">
         SELECT
             o.id,
             o.order_no,

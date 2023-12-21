@@ -1,9 +1,9 @@
-package com.sharding.mapper;
+package com.sharding.modules.order.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.sharding.domain.dto.OrderPageDTO;
-import com.sharding.domain.entity.Order;
-import com.sharding.domain.vo.OrderPageVO;
+import com.sharding.modules.order.domain.dto.OrderPageDTO;
+import com.sharding.modules.order.domain.entity.Order;
+import com.sharding.modules.order.domain.vo.OrderPageVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

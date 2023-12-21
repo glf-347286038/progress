@@ -1,12 +1,12 @@
-package com.sharding.controller;
+package com.sharding.modules.order.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.sharding.domain.dto.OrderPageDTO;
-import com.sharding.domain.entity.Order;
-import com.sharding.domain.vo.OrderPageVO;
-import com.sharding.domain.vo.OrderVo;
-import com.sharding.service.OrderService;
+import com.sharding.modules.order.domain.dto.OrderPageDTO;
+import com.sharding.modules.order.domain.entity.Order;
+import com.sharding.modules.order.domain.vo.OrderPageVO;
+import com.sharding.modules.order.domain.vo.OrderVo;
+import com.sharding.modules.order.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,7 +1,7 @@
-package com.sharding.mapper;
+package com.sharding.modules.order.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.sharding.domain.entity.OrderDetail;
+import com.sharding.modules.order.domain.entity.OrderDetail;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

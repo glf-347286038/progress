@@ -1,10 +1,10 @@
-package com.sharding.service.impl;
+package com.sharding.modules.order.service.impl;
 
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.sharding.domain.entity.OrderDetail;
-import com.sharding.mapper.OrderDetailMapper;
-import com.sharding.service.OrderDetailService;
+import com.sharding.modules.order.domain.entity.OrderDetail;
+import com.sharding.modules.order.mapper.OrderDetailMapper;
+import com.sharding.modules.order.service.OrderDetailService;
 import org.springframework.stereotype.Service;
 
 /**
