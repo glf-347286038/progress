@@ -22,4 +22,11 @@ public interface RelUserMsgService extends IService<RelUserMsg> {
      * @param userId 用户id
      */
     void updateByUserId(Long userId);
+
+    /**
+     * 使用jdbc新增
+     *
+     * @param num 新增数量
+     */
+    void batchAddTwo(Integer num);
 }

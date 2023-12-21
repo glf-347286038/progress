@@ -35,6 +35,15 @@ public class CommonResult<T> {
     }
 
     /**
+     * 成功返回结果-无返回内容
+     *
+     * @return 返回结果
+     */
+    public static <T> CommonResult<T> success() {
+        return new CommonResult<>(200, "操作成功", null);
+    }
+
+    /**
      * 成功返回结果-自定义消息内容
      *
      * @param data    获取的数据
