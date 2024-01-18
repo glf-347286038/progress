@@ -11,6 +11,7 @@
         <module name="design-pattern" />
         <module name="util" />
         <module name="common" />
+        <module name="dynamic-data-source" />
         <module name="flowable" />
         <module name="websocket" />
         <module name="demo" />

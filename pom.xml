@@ -15,6 +15,7 @@
         <module>util</module>
         <module>common</module>
         <module>sharding</module>
+        <module>dynamic-data-source</module>
     </modules>
 
     <dependencyManagement>
