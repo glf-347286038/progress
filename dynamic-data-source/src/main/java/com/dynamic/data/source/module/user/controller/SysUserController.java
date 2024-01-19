@@ -1,5 +1,7 @@
 package com.dynamic.data.source.module.user.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.common.web.domain.CommonResult;
 import com.dynamic.data.source.module.user.domain.SysUser;
 import com.dynamic.data.source.module.user.service.SysUserService;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SysUserController {
     private final SysUserService sysUserService;
+
+    @PostMapping("/detail")
+    public CommonResult<SysUser> detail(@RequestBody SysUser user) {
+        return CommonResult.success(sysUserService.getOne(new LambdaQueryWrapper<SysUser>().eq(SysUser::getUserName, user.getUserName())));
+    }
 
     @PostMapping("/add")
     public void add(@RequestBody SysUser user) {
