@@ -33,7 +33,7 @@ public class DataSourceChangeProvider {
         Integer tenantId = tenantConfig.getTenantId();
         String dsName = "tenant_" + tenantId;
         dataSourceProperty.setPoolName(dsName);
-        dataSourceProperty.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSourceProperty.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSourceProperty.setUrl(tenantConfig.getJdbcUrl());
         dataSourceProperty.setUsername(tenantConfig.getJdbcUserName());
         dataSourceProperty.setPassword(tenantConfig.getJdbcPassword());
