@@ -22,6 +22,13 @@ spring:
         # 配置检测连接是否有效
         validation-query: SELECT 1
 
+      datasource:
+        tenant_1_starrocks:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://10.34.195.4:19030/mes_pack?useSSL=false&useUnicode=false&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2B8&rewriteBatchedStatements=true
+          username: root
+          password: Bigdata@123!!
+
 
 #
 #    url: jdbc:mysql://47.98.149.207:3307/test?serverTimezone=Asia/Shanghai&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8

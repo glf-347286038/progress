@@ -1,6 +1,5 @@
 package com.dynamic.data.source.module.user.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.common.web.domain.CommonResult;
 import com.dynamic.data.source.module.user.domain.SysUser;
 import com.dynamic.data.source.module.user.service.SysUserService;
@@ -22,7 +21,7 @@ public class SysUserController {
 
     @PostMapping("/detail")
     public CommonResult<SysUser> detail(@RequestBody SysUser user) {
-        return CommonResult.success(sysUserService.getOne(new LambdaQueryWrapper<SysUser>().eq(SysUser::getUserName, user.getUserName())));
+        return CommonResult.success(sysUserService.detail(user));
     }
 
     @PostMapping("/add")

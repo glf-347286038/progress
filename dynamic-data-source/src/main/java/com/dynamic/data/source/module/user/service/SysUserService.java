@@ -10,5 +10,11 @@ import com.dynamic.data.source.module.user.domain.SysUser;
  * @author golf
  */
 public interface SysUserService extends IService<SysUser> {
-
+    /**
+     * 查询详情
+     *
+     * @param user 用户
+     * @return 用户
+     */
+    SysUser detail(SysUser user);
 }
