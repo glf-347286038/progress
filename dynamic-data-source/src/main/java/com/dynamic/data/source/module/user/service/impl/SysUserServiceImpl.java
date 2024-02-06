@@ -22,13 +22,23 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
 
         SysUser sysUser = this.getOne(new LambdaQueryWrapper<SysUser>().eq(SysUser::getUserName, user.getUserName()));
 
-        DynamicDataSourceContextHolder.push("tenant_" + DynamicDataSourceChangeInterceptor.TENANT_ID_THREAD_LOCAL.get() + "_starrocks");
-        String s = this.baseMapper.getStarrocks();
+        this.getStarrocks();
 
         DynamicDataSourceContextHolder.push("tenant_" + DynamicDataSourceChangeInterceptor.TENANT_ID_THREAD_LOCAL.get());
         SysUser sysUser2 = this.getOne(new LambdaQueryWrapper<SysUser>().eq(SysUser::getUserName, user.getUserName()));
         return sysUser;
     }
+
+
+    private String getStarrocks(){
+        // 获取当前线程连接1
+        String s1 = DynamicDataSourceContextHolder.peek();
+        // 切换为目标连接2
+        // 切换为连接1
+        DynamicDataSourceContextHolder.push("tenant_" + DynamicDataSourceChangeInterceptor.TENANT_ID_THREAD_LOCAL.get() + "_starrocks");
+        return this.baseMapper.getStarrocks();
+    }
+
 }
 
 
