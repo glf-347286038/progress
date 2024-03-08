@@ -29,13 +29,6 @@ spring:
           username: root
           password: Bigdata@123!!
 
-
-#
-#    url: jdbc:mysql://47.98.149.207:3307/test?serverTimezone=Asia/Shanghai&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
-#    username: root
-#    password: 158d3e483dc2
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   configuration:

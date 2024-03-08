@@ -28,7 +28,7 @@ demo:
 mybatis-plus:
   mapper-locations: classpath:mybatis/mapper/*.xml
   config-location: classpath:mybatis/mybatis-config.xml
-
-logging:
-  # log4j2日志配置  业务
-  config: classpath:log4j2.xml
+#
+#logging:
+#  # log4j2日志配置  业务
+#  config: classpath:log4j2.xml
