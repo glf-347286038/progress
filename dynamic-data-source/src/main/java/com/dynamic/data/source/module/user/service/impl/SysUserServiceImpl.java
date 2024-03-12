@@ -8,6 +8,7 @@ import com.dynamic.data.source.config.DynamicDataSourceChangeInterceptor;
 import com.dynamic.data.source.module.user.domain.SysUser;
 import com.dynamic.data.source.module.user.mapper.SysUserMapper;
 import com.dynamic.data.source.module.user.service.SysUserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.List;
 /**
  * @author golf
  */
+@Slf4j
 @Service
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         implements SysUserService {
@@ -24,12 +26,13 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
     public SysUser detail(SysUser user) {
 
         SysUser sysUser = this.getOne(new LambdaQueryWrapper<SysUser>().eq(SysUser::getUserName, user.getUserName()));
-
-        this.getStarrocks();
+        log.info(sysUser.toString());
+        // 可优化为aop方式实现,先查出当前连接 切换为目标连接、方法执行完后再切换回
+        log.info(this.getStarrocks());
 
         DynamicDataSourceContextHolder.push("tenant_" + DynamicDataSourceChangeInterceptor.TENANT_ID_THREAD_LOCAL.get());
-        SysUser sysUser2 = this.getOne(new LambdaQueryWrapper<SysUser>().eq(SysUser::getUserName, user.getUserName()));
-        return sysUser;
+
+        return this.getOne(new LambdaQueryWrapper<SysUser>().eq(SysUser::getUserName, user.getUserName()));
     }
 
 
@@ -37,9 +40,11 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         // 获取当前线程连接1
         String s1 = DynamicDataSourceContextHolder.peek();
         // 切换为目标连接2
-        // 切换为连接1
         DynamicDataSourceContextHolder.push("tenant_" + DynamicDataSourceChangeInterceptor.TENANT_ID_THREAD_LOCAL.get() + "_starrocks");
-        return this.baseMapper.getStarrocks();
+        String r = this.baseMapper.getStarrocks();
+        // 切换为连接1
+        DynamicDataSourceContextHolder.push(s1);
+        return r;
     }
 
     public static void main(String[] args) {
